@@ -6,8 +6,8 @@ import maclaren from "../Images/maclaren.jpg";
 import mustang from "../Images/mustang.jpg";
 import mazda from "../Images/whiteMazda.jpg";
 import tiguan from "../Images/whiteTiguan.jpg";
+import profile from "../Images/profilePecture.jpg";
 
 
 
-
-export {bmw, kona, mercides, logo, maclaren, mustang, mazda, tiguan};
+export {bmw, kona, mercides, logo, maclaren, mustang, mazda, tiguan, profile};

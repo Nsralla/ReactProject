@@ -1,5 +1,6 @@
 import "./carinfo.scss";
-export default function CarInfo() {
+export default function NewCar({closeDialog}) {
+
 return (
     <>
         <div className="add-car-container">
@@ -22,8 +23,8 @@ return (
                     <textarea id="details" name="details" rows="5"></textarea>
                 </div>
                 <div className="form-actions">
-                    <button type="button" id="cancel">Cancel</button>
-                    <button type="submit" id="add">Add</button>
+                    <button className="cancel-button" type="button" id="cancel" onClick={closeDialog}>Cancel</button>
+                    <button className="cancel-button" type="submit" id="add">Add</button>
                 </div>
             </form>
         </div>

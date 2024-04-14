@@ -4,10 +4,35 @@
     align-items: center;
     border: 1px solid white;
 
-    img{
-        width: 40%;
-        height: auto;
-        object-fit: contain;
-        border-radius: 2px;
+    // LOGO
+    .logo{
+        display: flex;
+        img{
+            width: 50%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 3px;
+        }
     }
+
+    //ADD BUTTON
+    .button-div{
+        width: 80px;
+        height: 30px;
+        border-radius: 2px;
+
+        // button
+        button{
+            background: transparent;
+            height: 100%;
+            width: 100%;
+            border-radius: 4px;
+            // ICON
+            i{
+                color: white;
+            }
+        }
+    }
+
+
 }

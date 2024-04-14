@@ -1,0 +1,36 @@
+.sidebar-section{
+    border: 1px solid white;
+    // height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .profile-img-div{
+        margin-top: 10px;
+        width: 100%;
+
+        img{
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+    }
+
+
+    .links-div{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        .flink, .slink{
+            border: 1px solid white;
+            height: 40px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+            width: 100%;
+        }
+    }
+}

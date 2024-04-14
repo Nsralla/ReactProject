@@ -1,6 +1,6 @@
 import Header from "./Components/Header";
 import Sidebar from "./Components/Sidebar";
-import MainContent from "./Components/MainContent";
+import CarsList from "./Components/CarsList";
 import './App.scss';
 function App() {
   return (
@@ -8,7 +8,9 @@ function App() {
       <Header />
       <div className="content">
         <Sidebar />
-        <MainContent/>
+        <section>
+          <CarsList/>
+        </section>
       </div>
     </div>
   );

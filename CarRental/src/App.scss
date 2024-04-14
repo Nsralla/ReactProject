@@ -4,3 +4,13 @@
   padding: 2rem;
   text-align: center;
 }
+.app{
+  // height: 100%;
+}
+
+.content{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    border: 1px solid white;
+    height: 90%;
+}
