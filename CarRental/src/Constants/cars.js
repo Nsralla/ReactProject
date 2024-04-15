@@ -9,6 +9,7 @@ const cars = [
     details:
       "BMW Vision Neue Klasse X: More than just a single carthe Neue Klasse stands for a family of vehicles and for the next generation of all-electric BMW models. The BMW Vision Neue Klasse X transfers the philosophy and technology of the Neue Klasse to a pioneering Sports Activity Vehicle. A first glimpse into the future.",
     sideViewImages: [bmw, bmw1, bmw2, bmw3, bmw4],
+    available: 2,
   },
   {
     name: "Kona",
@@ -17,7 +18,8 @@ const cars = [
     price: 100,
     details:
       "Kona Vision Neue Klasse X: More than just a single carthe Neue Klasse stands for a family of vehicles and for the next generation of all-electric BMW models. The BMW Vision Neue Klasse X transfers the philosophy and technology of the Neue Klasse to a pioneering Sports Activity Vehicle. A first glimpse into the future.",
-    sideViewImages: [kona,kona2, kona3, kona4, kona5],
+    sideViewImages: [kona, kona2, kona3, kona4, kona5],
+    available: 2,
   },
   {
     name: "Mercides",
@@ -27,6 +29,7 @@ const cars = [
     details:
       "Mericdes Vision Neue Klasse X: More than just a single carthe Neue Klasse stands for a family of vehicles and for the next generation of all-electric BMW models. The BMW Vision Neue Klasse X transfers the philosophy and technology of the Neue Klasse to a pioneering Sports Activity Vehicle. A first glimpse into the future.",
     sideViewImages: [kona, mercides, mazda],
+    available: 2,
   },
   {
     name: "Mclaren",
@@ -36,6 +39,7 @@ const cars = [
     details:
       "Mclaren Vision Neue Klasse X: More than just a single carthe Neue Klasse stands for a family of vehicles and for the next generation of all-electric BMW models. The BMW Vision Neue Klasse X transfers the philosophy and technology of the Neue Klasse to a pioneering Sports Activity Vehicle. A first glimpse into the future.",
     sideViewImages: [kona, mercides, mazda],
+    available: 2,
   },
   {
     name: "Mustang",
@@ -45,6 +49,7 @@ const cars = [
     details:
       "Mustang Vision Neue Klasse X: More than just a single carthe Neue Klasse stands for a family of vehicles and for the next generation of all-electric BMW models. The BMW Vision Neue Klasse X transfers the philosophy and technology of the Neue Klasse to a pioneering Sports Activity Vehicle. A first glimpse into the future.",
     sideViewImages: [kona, mercides, mazda],
+    available: 2,
   },
   {
     name: "Mazda",
@@ -54,6 +59,7 @@ const cars = [
     details:
       "Mazda Vision Neue Klasse X: More than just a single carthe Neue Klasse stands for a family of vehicles and for the next generation of all-electric BMW models. The BMW Vision Neue Klasse X transfers the philosophy and technology of the Neue Klasse to a pioneering Sports Activity Vehicle. A first glimpse into the future.",
     sideViewImages: [kona, mercides, mazda],
+    available: 2,
   },
   {
     name: "Tiguan",
@@ -63,6 +69,7 @@ const cars = [
     details:
       "Tiguan Vision Neue Klasse X: More than just a single carthe Neue Klasse stands for a family of vehicles and for the next generation of all-electric BMW models. The BMW Vision Neue Klasse X transfers the philosophy and technology of the Neue Klasse to a pioneering Sports Activity Vehicle. A first glimpse into the future.",
     sideViewImages: [kona, mercides, mazda],
+    available: 2,
   },
 ];
 
