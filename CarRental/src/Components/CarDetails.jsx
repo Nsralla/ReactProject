@@ -5,6 +5,7 @@ import ImageCarousel from './ImageCarousel.jsx';
 import RentButton from "./Button.jsx";
 import { useRef, useState } from "react";
 import CarRent from "../designs/carRent.jsx";
+import DeleteButton from "./DeleteButton.jsx";
 export default function CarDetails(){
     const param = useParams();
     const carName = param.carName;
@@ -39,7 +40,7 @@ export default function CarDetails(){
             <div  className="header">
                 <h2>{carName}</h2>
                 <div className="buttons">
-                    <button>Delete</button>
+                    <DeleteButton carName={carName}/>
                     <button>Edit</button>
                     <RentButton handleClick={openDialog} />
                 </div>
@@ -54,6 +55,7 @@ export default function CarDetails(){
 
             <ImageCarousel images={car.sideViewImages} />
 
+            <h2>${car.price} per day</h2>
             <div><h1>Details</h1></div>
             <section className="body">
                 <div>{car.details}</div>

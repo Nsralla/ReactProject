@@ -15,7 +15,7 @@ const initialState = cars;
         state.push(action.payload);
         },
         removeCar: (state, action) => {
-        return state.filter((car) => car.id !== action.payload);
+        return state.filter((car) => car.name !== action.payload);
         },
         editCar: (state, action) => {
         const { id, name } = action.payload;

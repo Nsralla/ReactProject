@@ -38,7 +38,7 @@
             <img
             src={images[currentImageIndex]}
             alt="Car Image"
-            style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius:'30px' }}
+            style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius:'30px' }}
             />
         </div>
         <div style={{ marginTop: "10px" }}>

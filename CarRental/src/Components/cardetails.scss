@@ -16,12 +16,13 @@
         gap: 12px;
         // justify-content: space-around;
 
-        button{
+        button, Link,a{
             padding: 8px 10px;
             background-color: transparent;
             font-weight: bold;
             font-size: 18px;
             color: white;
+            text-decoration: none;
             
         }
     }
