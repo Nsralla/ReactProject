@@ -3,6 +3,7 @@ import CarsList from "./Components/CarsList";
 import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 import MainPage from "./MainPage";
 import { History } from "./Components/History";
+import CarDetails from "./Components/CarDetails";
 const router = createBrowserRouter([
   {
     path:'/',
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
     },
   {
       path:'/allcars/:carId',
-      element:<></>
+      element:<CarDetails></CarDetails>
   },]
 }]);
 
