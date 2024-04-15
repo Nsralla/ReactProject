@@ -17,7 +17,7 @@ export default function CarsList() {
                     <img src={car.image} alt="Car" />
                     <h2>{car.name}</h2>
                     <h3>{car.price}$</h3>
-                    <p>{truncateText(car.details, 200)}</p> {/* Truncate details to 100 characters */}
+                    <p>{truncateText(car.details, 200)}</p>
                 </Link>
             ))}
         </div>

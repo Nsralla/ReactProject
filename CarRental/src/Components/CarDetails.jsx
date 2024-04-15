@@ -2,6 +2,9 @@ import { useParams } from "react-router-dom"
 import './cardetails.scss';
 import { useSelector } from "react-redux";
 import ImageCarousel from './ImageCarousel.jsx';
+import RentButton from "./Button.jsx";
+import { useRef, useState } from "react";
+import CarRent from "../designs/carRent.jsx";
 export default function CarDetails(){
     const param = useParams();
     const carName = param.carName;
@@ -14,6 +17,22 @@ export default function CarDetails(){
     })
 
 
+    // handle opening, closing the rent dialog
+    const [isOpen, setIsOpen] = useState(false);
+    const dialogRef = useRef(null);
+
+    const openDialog = ()=>{
+        setIsOpen(true);
+        dialogRef.current.showModal();
+    };
+
+    const closeDialog = () =>{
+        setIsOpen(false);
+        dialogRef.current.close();
+    }
+
+
+
     return(
         <div className="car-detail-div">
             <div  className="header">
@@ -21,9 +40,16 @@ export default function CarDetails(){
                 <div className="buttons">
                     <button>Delete</button>
                     <button>Edit</button>
-                    <button>Rent</button>
+                    <RentButton handleClick={openDialog} />
                 </div>
             </div>
+
+
+            <dialog style={{backgroundColor:'#f39f5a'} } ref={dialogRef}>
+                <CarRent closeDialog={closeDialog}/>
+            </dialog>
+
+
 
             <ImageCarousel images={car.sideViewImages} />
 
