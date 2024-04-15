@@ -1,0 +1,42 @@
+.car-detail-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 6px;
+    box-sizing: border-box;
+
+    .buttons{
+        display: flex;
+        gap: 12px;
+        // justify-content: space-around;
+
+        button{
+            padding: 8px 10px;
+            background-color: transparent;
+            font-weight: bold;
+            font-size: 18px;
+            color: white;
+            
+        }
+    }
+}
+
+
+h1{
+    text-align: left;
+    padding: 10px;
+    margin: 0;
+}
+.body{
+    width: 70%;
+    text-align: left;
+    padding: 10px;
+}
+}
+

@@ -17,7 +17,7 @@ const router = createBrowserRouter([
       element:<History/>
     },
   {
-      path:'/allcars/:carId',
+      path:'/allcars/:carName',
       element:<CarDetails></CarDetails>
   },]
 }]);
