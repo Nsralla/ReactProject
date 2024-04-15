@@ -27,11 +27,35 @@ const initialState = cars;
     },
     });
 
+
+    const rentedCarsSlice = createSlice(  {
+        name:"rentedCars",
+        initialState:[],
+        reducers:{
+            setRentedCars: (state, action)=>{
+                return [...action.payload];
+            },
+            addRentedCar:(state, action)=>{
+                state.push(action.payload);
+            },
+            returnCar: (state, action) => {
+            return state.filter((car) => car.name !== action.payload);
+            },
+            listRentedCars: (state) => {
+            return state;
+            }
+        },
+        });
+    
+
+
+    export const {setRentedCars, addRentedCar, returnCar, listRentedCars} = rentedCarsSlice.actions;
     export const { setCars, addCar, removeCar, editCar } = carsSlice.actions;
 
     const store = configureStore({
     reducer: {
         cars: carsSlice.reducer,
+        rentedCars: rentedCarsSlice.reducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
     });

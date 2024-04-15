@@ -35,6 +35,7 @@ export default function CarDetails(){
 
     return(
         <div className="car-detail-div">
+
             <div  className="header">
                 <h2>{carName}</h2>
                 <div className="buttons">
@@ -46,7 +47,7 @@ export default function CarDetails(){
 
 
             <dialog style={{backgroundColor:'#f39f5a'} } ref={dialogRef}>
-                <CarRent closeDialog={closeDialog}/>
+                <CarRent closeDialog={closeDialog} price={car.price} carName={carName}/>
             </dialog>
 
 
