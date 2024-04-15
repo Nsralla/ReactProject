@@ -10,6 +10,7 @@ export default function CarsList() {
                 <div className='car-div' key={index}>
                     <img src={car.image} alt="Car" />
                     <h2>{car.name}</h2>
+                    <h3>{car.price}$</h3>
                     <p>{car.details}</p>
                 </div>
             ))}

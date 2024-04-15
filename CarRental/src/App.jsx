@@ -2,7 +2,7 @@
 import CarsList from "./Components/CarsList";
 import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 import MainPage from "./MainPage";
-
+import { History } from "./Components/History";
 const router = createBrowserRouter([
   {
     path:'/',
@@ -11,7 +11,14 @@ const router = createBrowserRouter([
       {
         path:'/allcars',
         element:<CarsList></CarsList>,
-    },{}]
+    },{
+      path:'/history',
+      element:<History/>
+    },
+  {
+      path:'/allcars/:carId',
+      element:<></>
+  },]
 }]);
 
 function App() {

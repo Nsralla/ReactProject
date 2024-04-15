@@ -29,15 +29,12 @@ export default function Sidebar() {
                 >
                     Car
                 </Link>
-                <motion.a
-                    href="#"
+                <Link
+                    to="/history"
                     className='slink'
-                    variants={linkVariants}
-                    whileHover="hover"
-                    whileTap="tap"
                 >
                     History
-                </motion.a>
+                </Link>
             </div>
         </section>
     );
