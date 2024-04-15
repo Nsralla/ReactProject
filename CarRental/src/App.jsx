@@ -1,19 +1,21 @@
-import Header from "./Components/Header";
-import Sidebar from "./Components/Sidebar";
+
 import CarsList from "./Components/CarsList";
-import './App.scss';
+import {RouterProvider, createBrowserRouter} from 'react-router-dom';
+import MainPage from "./MainPage";
+
+const router = createBrowserRouter([
+  {
+    path:'/',
+    element:<MainPage></MainPage>,
+    children:[
+      {
+        path:'/allcars',
+        element:<CarsList></CarsList>,
+    },{}]
+}]);
+
 function App() {
-  return (
-    <div className="app">
-      <Header />
-      <div className="content">
-        <Sidebar />
-        <section>
-          <CarsList/>
-        </section>
-      </div>
-    </div>
-  );
+  return <RouterProvider router={router}></RouterProvider>
 }
 
 export default App

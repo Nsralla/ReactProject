@@ -1,19 +1,19 @@
 import './sidebar.scss';
 import { motion } from 'framer-motion';
 import { profile } from '../Constants/index.js';
+import { Link } from 'react-router-dom';
 
-export default function Sidebar(){
-    // Define your animation variants
+export default function Sidebar() {
     const linkVariants = {
         hover: {
-            scale: 1.1, // scale the link to 110% of its size on hover
+            scale: 1.1,
             transition: {
                 type: "spring",
                 stiffness: 300,
             },
         },
         tap: {
-            scale: 0.9, // scale the link to 90% of its size on tap/click
+            scale: 0.9,
         },
     };
 
@@ -23,18 +23,15 @@ export default function Sidebar(){
                 <img src={profile} alt="profile picture" />
             </div>
             <div className='links-div'>
-                <motion.a
+                <Link
+                    to="/allcars"
                     className='flink'
-                    href="#"
-                    variants={linkVariants}
-                    whileHover="hover"
-                    whileTap="tap"
                 >
                     Car
-                </motion.a>
+                </Link>
                 <motion.a
-                    className='slink'
                     href="#"
+                    className='slink'
                     variants={linkVariants}
                     whileHover="hover"
                     whileTap="tap"
