@@ -31,14 +31,14 @@
             maxWidth: "600px",
             height: "400px",
             overflow: "hidden",
-            borderRadius: "10px",
+            borderRadius: "30px",
             boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
             }}
         >
             <img
             src={images[currentImageIndex]}
             alt="Car Image"
-            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+            style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius:'30px' }}
             />
         </div>
         <div style={{ marginTop: "10px" }}>
