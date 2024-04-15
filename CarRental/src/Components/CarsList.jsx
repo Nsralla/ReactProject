@@ -1,17 +1,18 @@
 import './carslist.scss';
-import {cars} from '../Constants/cars.js';
+import { useSelector } from 'react-redux';
 
+export default function CarsList() {
+    const cars = useSelector((state) => state.cars);
 
-export default function CarsList(){
-    return(<div className='list-main-div'>
-        {cars.map((car)=>{
-            return(
-                <div className='car-div' key={car.name}>
-                    <img src={car.image} alt="car image" />
+    return (
+        <div className='list-main-div'>
+            {cars.map((car, index) => (
+                <div className='car-div' key={index}>
+                    <img src={car.image} alt="Car" />
                     <h2>{car.name}</h2>
                     <p>{car.details}</p>
                 </div>
-            )
-        })}
-    </div>);
+            ))}
+        </div>
+    );
 }

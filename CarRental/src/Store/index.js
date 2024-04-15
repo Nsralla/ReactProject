@@ -1,8 +1,8 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import {thunk} from "redux-thunk"; /// Corre[[ct import of redux-thunk
-
+import { cars } from "../Constants/cars.js";
 // Define the initial state of the cars
-const initialState = [];
+const initialState = cars;
 
     const carsSlice = createSlice({
     name: "cars",
