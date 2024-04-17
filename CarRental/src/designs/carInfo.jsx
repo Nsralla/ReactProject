@@ -24,7 +24,8 @@ export default function NewCar({ closeDialog }) {
             model: '2022',
             price: priceRef.current.value,
             details: detailsRef.current.value,
-            image: image  // Use Blob URL
+            image: image,  // Use Blob URL,
+            sideViewImages:[],
         };
 
         dispatch(addCar(newCar));

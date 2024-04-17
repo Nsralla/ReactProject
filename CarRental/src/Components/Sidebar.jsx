@@ -21,30 +21,35 @@ export default function Sidebar({isOpen, onClose}) {
 
 
     return (
-        <motion.section
-        className='sidebar-section'
+      <motion.section
+        className="sidebar-section"
         variants={sidebarVariants}
         initial="hidden"
-        animate={isOpen? "visible": "hidden"}>
-        <button onClick={onClose}>Close</button>
-            <div className='profile-img-div'>
-                {/* <img src={profile} alt="profile picture" /> */}
-            </div>
-            <div className='links-div'>
-                <button
-                onClick={()=>{
-                    handleFirstLink()
-                }}
-                className='flink'
-                >
-                    Car
-                </button>
-                <button
-                onClick={handleSecondLink}
-                className='slink'>
-                    History
-                </button>
-            </div>
-        </motion.section>
+        animate={isOpen ? "visible" : "hidden"}
+      >
+        {/* <button onClick={onClose}  type="button" className="btn-close">
+            <span className="icon-cross"></span>
+            <span className="visually-hidden">Close</span>
+        </button> */}
+        <span onClick={onClose} className="cross-stand-alone"></span>
+
+        <div className="profile-img-div">
+          {/* <img src={profile} alt="profile picture" /> */}
+        </div>
+        <div className="links-div">
+          <button
+            onClick={() => {
+              handleFirstLink();
+            }}
+            className="button-50"
+          >
+            Car
+          </button>
+
+          <button onClick={handleSecondLink} className="button-50">
+            History
+          </button>
+        </div>
+      </motion.section>
     );
 }

@@ -12,8 +12,10 @@ import { editCar } from '../Store/index.js';
 export default function CarDetails() {
     const { carName } = useParams();
     const cars = useSelector(state => state.cars);
+    console.log(cars);
     const car = cars.find(car => car.name === carName);
     const dispatch = useDispatch();
+    console.log(car);
     
 
     // State and refs for handling the dialog
