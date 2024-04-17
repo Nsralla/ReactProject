@@ -1,14 +1,32 @@
 import './carslist.scss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { collection, getDoc } from 'firebase/firestore';
+import { app } from '../db/firebase';
+import { useEffect } from 'react';
+import { fetchCars } from '../db/firebase';
 // Helper function to truncate text
 function truncateText(text, maxLength) {
     return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
 }
 
 export default function CarsList() {
+    const dispatch = useDispatch();
+    // instead of getting the cars from redux
+    // get the cars from fire store
+    // and put them in the redux store
+    // then get the cars from redux
+    useEffect(()=>{
+        const handleFetchingCars = async()=>{
+            await dispatch(fetchCars());
+        }
+        handleFetchingCars();
+    },[dispatch]);
+
     const cars = useSelector((state) => state.cars);
+
+
+    
 
     return (
         <div className='list-main-div'>
