@@ -4,6 +4,11 @@ import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 import MainPage from "./MainPage";
 import { History } from "./Components/History";
 import CarDetails from "./Components/CarDetails";
+// import { collection, addDoc } from "firebase/firestore";
+// import { db } from "./db/firebase";
+// import { cars } from "./Constants/cars";
+// import { useEffect } from "react";
+
 const router = createBrowserRouter([
   {
     path:'/',
@@ -23,6 +28,9 @@ const router = createBrowserRouter([
 }]);
 
 function App() {
+
+
+
   return <RouterProvider router={router}></RouterProvider>
 }
 
