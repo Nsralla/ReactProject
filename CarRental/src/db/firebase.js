@@ -3,7 +3,6 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { addDoc, collection, deleteDoc, getDoc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
 import { setCars, setRentedCars } from "../Store/index";
-
 const firebaseConfig = {
     apiKey: "AIzaSyDwoz06Zni2VzDSqJ3OIW0j0LNvZopXmA4",
     authDomain: "carrental-10bea.firebaseapp.com",
@@ -46,6 +45,32 @@ export const addCarToFirebase = (car) => async(dispatch)=>{
     }
 };
 
+
+//get rented cars
+export const getRentedCars = ()=>async(dispatch)=>{
+    try{
+        const docRef = await getDocs(collection(db,"rentedCars"));
+        let rentedCars= docRef.docs.map(doc=>({
+            fireId:doc.id, ...doc.data()
+        }));
+        dispatch(setRentedCars(rentedCars));
+        console.log(rentedCars);
+    }catch(error){
+        console.error("Error fetching rented cars", error);
+    }
+};
+
+// add a rented car
+export const addRentedCarToFireBase = (car)=>async(dispatch)=>{
+    try{
+        const docRef = await addDoc(collection(db,"rentedCars"),car);
+        console.log("Document written with ID:", docRef.id);
+        // update rented cars list in redux
+        dispatch((car));
+    }catch(error){
+        console.error("error adding rented car", error);
+    }
+}
 
 //  useEffect(()=>{
 //     async function uploadCarsToFirestore(){

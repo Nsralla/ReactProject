@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './carRent.scss';
-import { addRentedCar } from '../Store';
 import { useCallback, useRef, useState } from 'react';
+import { addRentedCarToFireBase } from '../db/firebase';
 export default function CarRent({closeDialog, price, carName}){
 
     const rentedCars = useSelector((state)=>state.rentedCars)
@@ -32,7 +32,7 @@ const  handleRent = useCallback(()=>{
             totalDays,
             totalCost: price * totalDays,
         };
-        dispatch(addRentedCar(rentCarDetails));
+        dispatch(addRentedCarToFireBase(rentCarDetails));
         totalRef.current.value = `$${rentCarDetails.totalCost.toFixed(2)}`; 
 },[dispatch,carName,price,rentedCars]);
 
