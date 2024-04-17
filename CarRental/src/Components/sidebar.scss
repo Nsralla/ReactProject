@@ -1,9 +1,19 @@
 .sidebar-section{
-    border: 1px solid white;
-    // height: 100vh;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background: #f39f5A;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1000;
+    // border: 1px solid white;
+    // // height: 100vh;
+    // display: flex;
+    // flex-direction: column;
+    // gap: 20px;
 
     .profile-img-div{
         margin-top: 10px;

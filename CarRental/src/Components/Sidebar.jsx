@@ -1,26 +1,50 @@
 import './sidebar.scss';
 import { profile } from '../Constants/index.js';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import {motion} from 'framer-motion';
+const sidebarVariants = {
+    hidden: { x: "-100%" },
+    visible: { x: 0, transition: { stiffness: 120 } },
+};
 
-export default function Sidebar() {
+export default function Sidebar({isOpen, onClose}) {
+
+    const navigate = useNavigate();
+    function handleFirstLink(){
+        navigate("/allcars"); // navigate to the all cars page after deletion
+        onClose();
+    }
+    function handleSecondLink(){
+            navigate("/history");
+            onClose();
+    }
 
 
     return (
-        <section className='sidebar-section'>
+        <motion.section
+        className='sidebar-section'
+        variants={sidebarVariants}
+        initial="hidden"
+        animate={isOpen? "visible": "hidden"}>
+        <button onClick={onClose}>Close</button>
             <div className='profile-img-div'>
-                <img src={profile} alt="profile picture" />
+                {/* <img src={profile} alt="profile picture" /> */}
             </div>
             <div className='links-div'>
-                <Link
-                    to="/allcars"
-                    className='flink'
+                <button
+                onClick={()=>{
+                    handleFirstLink()
+                }}
+                className='flink'
                 >
                     Car
-                </Link>
-                <Link to="/history" className='slink'>
+                </button>
+                <button
+                onClick={handleSecondLink}
+                className='slink'>
                     History
-                </Link>
+                </button>
             </div>
-        </section>
+        </motion.section>
     );
 }

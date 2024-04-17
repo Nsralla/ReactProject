@@ -1,16 +1,10 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
-}
-.app{
-  // height: 100%;
 }
 
 .content{
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    // grid-template-columns: ;
     border: 1px solid white;
     height: 90%;
 }
