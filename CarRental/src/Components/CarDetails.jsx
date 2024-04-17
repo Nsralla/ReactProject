@@ -65,7 +65,7 @@ function handleSubmitNewPrice(){
             <div className="header">
                 <h2>{carName}</h2>
                 <div className="buttons">
-                    <DeleteButton carName={carName} />
+                    <DeleteButton  carName={carName} />
                     <button onClick={handleIdChange}>Edit</button>
                     <RentButton handleClick={openDialog} />
                 </div>
