@@ -29,6 +29,7 @@ export default function NewCar({ closeDialog }) {
             image: image,  // Use Blob URL,
             sideViewImages:[],
         };
+        console.log(newCar.image);
 
         try{
             await dispatch(addCarToFirebase(newCar));
@@ -38,6 +39,7 @@ export default function NewCar({ closeDialog }) {
         dispatch(addCar(newCar));
         closeDialog();
     },[dispatch,closeDialog, image]);
+    
 
     return (
         <>

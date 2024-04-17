@@ -61,6 +61,7 @@ const handleSubmitNewPrice = useCallback(() =>{
 },[car,dispatch, carPrice]);
 
 
+    console.log(car.image);
     return (
         <div className="car-detail-div">
             <div className="header2">
@@ -76,14 +77,17 @@ const handleSubmitNewPrice = useCallback(() =>{
                 <CarRent closeDialog={closeDialog} price={car.price} carName={carName} />
             </dialog>
 
-            <ImageCarousel images={car.sideViewImages} />
+            {car.sideViewImages.length > 0 &&  <ImageCarousel images={car.sideViewImages} />}
+            {car.sideViewImages.length === 0 && <div style={{width:'100%', borderRadius:"10px", backgroundColor:'#f57c51', marginBottom:'35px'}}>
+                <h2>Other images are unavailable for this car</h2></div>
+            }
 
             {editId === 0 ? (
                 <input  type="text" placeholder={car.price}
                     onBlur={()=>handleSubmitNewPrice()}
                     onChange={(event)=>handleNewPrice(event)} />
             ) : (
-                <h2>${car.price} per day</h2>
+                <h2 style={{textAlign:'left'}}><span className='coast'>Coast Per day</span> :${car.price}</h2>
             )}
 
             <div><h1>Details</h1></div>
