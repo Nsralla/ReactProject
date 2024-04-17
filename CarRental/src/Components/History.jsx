@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 
 export function History() {
     const rentedCars = useSelector((state) => state.rentedCars);
+    console.log(rentedCars);
     return (
         <table className="history-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
@@ -20,7 +21,7 @@ export function History() {
                     <td style={{ padding: '8px' }}>{car.car}</td>
                     <td style={{ padding: '8px' }}>{car.from}</td>
                     <td style={{ padding: '8px' }}>{car.to}</td>
-                    <td style={{ padding: '8px' }}>{car.totalCoast}</td>
+                    <td style={{ padding: '8px' }}>{car.totalCost}</td>
                 </tr>);
                 })}
                 

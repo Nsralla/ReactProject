@@ -18,8 +18,8 @@ const initialState = cars;
         return state.filter((car) => car.name !== action.payload);
         },
         editCar: (state, action) => {
-        const { id, name } = action.payload;
-        const carIndex = state.findIndex((car) => car.id === id);
+        const editedCar = action.payload;
+        const carIndex = state.findIndex((car) => car.name === editedCar.name);
         if (carIndex !== -1) {
             state[carIndex] = { ...state[carIndex], ...action.payload };
         }

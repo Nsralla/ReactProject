@@ -40,4 +40,34 @@ h1{
     padding: 10px;
 }
 }
+ textarea {
+        width: 100%; // Ensures full width in container
+        padding: 0.8em; // Comfortable padding around the text
+        margin-top: 10px; // Spacing from the previous elements
+        border: 2px solid #ccc; // Subtle border styling
+        border-radius: 4px; // Rounded corners
 
+        &:focus {
+            border-color: #5057c9; // Highlight color when focused
+            outline: none; // Removes the default focus outline
+            box-shadow: 0 0 8px rgba(80, 87, 201, 0.5); // Subtle glow effect
+        }
+    }
+
+    input{
+         padding: 0.8em; // Comfortable padding around the text
+        margin-top: 10px; // Spacing from the previous elements
+        border: 2px solid #ccc; // Subtle border styling
+        border-radius: 4px; // Rounded corners
+
+        &:focus {
+            border-color: #5057c9; // Highlight color when focused
+            outline: none; // Removes the default focus outline
+            box-shadow: 0 0 8px rgba(80, 87, 201, 0.5); // Subtle glow effect
+        }
+    }
+
+    textarea {
+        height: 150px; // Fixed height for text area
+        resize: none; // Disables resizing the text area
+    }
