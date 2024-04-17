@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { collection, deleteDoc, getDoc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, getDoc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
 import { setCars, setRentedCars } from "../Store/index";
 
 const firebaseConfig = {
@@ -33,6 +33,16 @@ export const fetchCars = () => async (dispatch) =>{
         dispatch(setCars(cars))
     }catch(error){
         console.error("Error fetching cars from firestore", error);
+    }
+};
+
+export const addCarToFirebase = (car) => async(dispatch)=>{
+    try{
+        const docRef = await addDoc(collection(db,"cars"),car);
+        console.log("Document written with ID:",docRef.id);
+
+    }catch(error){
+        console.error("Error adding car to firebase", error);
     }
 };
 

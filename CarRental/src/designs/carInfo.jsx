@@ -2,6 +2,7 @@ import "./carinfo.scss";
 import { useDispatch, useSelector } from 'react-redux';
 import { addCar } from "../Store/index.js";
 import { useCallback, useRef, useState } from "react";
+import { addCarToFirebase } from "../db/firebase.js";
 
 export default function NewCar({ closeDialog }) {
     const dispatch = useDispatch();
@@ -16,7 +17,8 @@ export default function NewCar({ closeDialog }) {
         }
     },[]);
 
-    const handleSubmit = useCallback((event) => {
+    // instead of adding to redux, add it to data base
+    const handleSubmit = useCallback(async (event) => {
         event.preventDefault();
 
         const newCar = {
@@ -28,6 +30,11 @@ export default function NewCar({ closeDialog }) {
             sideViewImages:[],
         };
 
+        try{
+            await dispatch(addCarToFirebase(newCar));
+        }catch(error){
+            console.error("error calling function to add car to db", error);
+        }
         dispatch(addCar(newCar));
         closeDialog();
     },[dispatch,closeDialog, image]);
