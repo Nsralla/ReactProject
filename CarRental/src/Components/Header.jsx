@@ -1,7 +1,7 @@
 import "./header.scss";
 import { logo } from "../Constants/index";
 import { motion} from "framer-motion";
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import NewCar from "../designs/carInfo"; 
 import Sidebar from "./Sidebar";
 
@@ -16,14 +16,16 @@ export default function Header() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const dialogRef = useRef(null);
-    const openDialog = () => {
+
+    const openDialog = useCallback(() => {
         setIsOpen(true);
         dialogRef.current.showModal();
-    };
-    const closeDialog = () => {
+    },[]);
+
+    const closeDialog = useCallback(() => {
         setIsOpen(false);
         dialogRef.current.close();
-    };
+    },[]);
 
 
 

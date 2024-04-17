@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 
 export function History() {
     const rentedCars = useSelector((state) => state.rentedCars);
-    console.log(rentedCars);
     return (
         <table className="history-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>

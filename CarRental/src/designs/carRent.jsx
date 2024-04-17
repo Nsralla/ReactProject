@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './carRent.scss';
 import { addRentedCar } from '../Store';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 export default function CarRent({closeDialog, price, carName}){
 
     const rentedCars = useSelector((state)=>state.rentedCars)
@@ -12,12 +12,12 @@ export default function CarRent({closeDialog, price, carName}){
 
     
 
-    function handleSubmit(event){
+    const handleSubmit = useCallback((event)=>{
         event.preventDefault();
-    }
+    },[]);
 
 
-function handleRent(){
+const  handleRent = useCallback(()=>{
         const lastCar = rentedCars.length > 0 ? rentedCars[rentedCars.length - 1] : null;
         let nextId = lastCar ? lastCar.id + 1 : 0;
         const startDate = new Date(startRef.current.value);
@@ -34,7 +34,7 @@ function handleRent(){
         };
         dispatch(addRentedCar(rentCarDetails));
         totalRef.current.value = `$${rentCarDetails.totalCost.toFixed(2)}`; 
-}
+},[dispatch,carName,price,rentedCars]);
 
 
     return(<>

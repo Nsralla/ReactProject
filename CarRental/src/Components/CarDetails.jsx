@@ -1,5 +1,5 @@
 // Importing necessary libraries and components
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ImageCarousel from './ImageCarousel.jsx';
@@ -21,42 +21,44 @@ export default function CarDetails() {
     const dialogRef = useRef(null);
 
     // Functions for dialog management
-    const openDialog = () => {
+    const openDialog = useCallback(() => {
         setIsOpen(true);
         dialogRef.current.showModal();
-    };
+    },[]);
 
-    const closeDialog = () => {
+    const closeDialog = useCallback(() => {
         setIsOpen(false);
         dialogRef.current.close();
-    };
+    },[]);
 
     // Update local state on user input
-const handleDetailsChange = (event) => {
+const handleDetailsChange = useCallback((event) => {
     setCarDetails(event.target.value);
-};
+},[]);
 
 // Dispatch changes when the user decides to save or submit the changes
 
-    const saveCarDetails = () => {
+const saveCarDetails = useCallback(() => {
         dispatch(editCar({ ...car, details: carDetails }));
         setEditId(null); // Optionally reset the edit mode
-    };
+    },[dispatch,car,carDetails]);
 
 
     // Toggle editId between 0 and 1
-    const handleIdChange = () => {
+const handleIdChange = useCallback(() => {
         setEditId(prevId => (prevId === 1 ? 0 : 1));
-    };
+},[]);
 
-function handleNewPrice(event){
+
+const  handleNewPrice = useCallback((event) =>{
     setCarPrice(event.target.value);
-}
+},[]);
 
-function handleSubmitNewPrice(){
+
+const handleSubmitNewPrice = useCallback(() =>{
     dispatch(editCar({...car, price:carPrice}));
     setEditId(null);
-}
+},[car,dispatch, carPrice]);
 
 
     return (

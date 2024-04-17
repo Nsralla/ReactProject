@@ -1,19 +1,19 @@
-    import { useState } from "react";
+    import { useCallback, useState } from "react";
 
     const ImageCarousel = ({ images }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    const nextImage = () => {
+    const nextImage = useCallback(() => {
         setCurrentImageIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
         );
-    };
+    },[images]);
 
-    const prevImage = () => {
+    const prevImage = useCallback(() => {
         setCurrentImageIndex((prevIndex) =>
         prevIndex === 0 ? images.length - 1 : prevIndex - 1
         );
-    };
+    },[images]);
 
     return (
         <div

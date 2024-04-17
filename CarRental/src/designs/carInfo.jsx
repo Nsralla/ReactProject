@@ -1,7 +1,7 @@
 import "./carinfo.scss";
 import { useDispatch, useSelector } from 'react-redux';
 import { addCar } from "../Store/index.js";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 export default function NewCar({ closeDialog }) {
     const dispatch = useDispatch();
@@ -10,13 +10,13 @@ export default function NewCar({ closeDialog }) {
     const detailsRef = useRef();
     const [image, setImage] = useState(null);  // Use state to handle image as a Blob URL
 
-    const handleImageChange = (event) => {
+    const handleImageChange = useCallback((event) => {
         if (event.target.files[0]) {
             setImage(URL.createObjectURL(event.target.files[0]));  // Create and set Blob URL
         }
-    };
+    },[]);
 
-    function handleSubmit(event) {
+    const handleSubmit = useCallback((event) => {
         event.preventDefault();
 
         const newCar = {
@@ -30,7 +30,7 @@ export default function NewCar({ closeDialog }) {
 
         dispatch(addCar(newCar));
         closeDialog();
-    }
+    },[dispatch,closeDialog, image]);
 
     return (
         <>

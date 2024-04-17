@@ -14,6 +14,7 @@ export default function Sidebar({isOpen, onClose}) {
         navigate("/allcars"); // navigate to the all cars page after deletion
         onClose();
     }
+
     function handleSecondLink(){
             navigate("/history");
             onClose();
@@ -27,10 +28,6 @@ export default function Sidebar({isOpen, onClose}) {
         initial="hidden"
         animate={isOpen ? "visible" : "hidden"}
       >
-        {/* <button onClick={onClose}  type="button" className="btn-close">
-            <span className="icon-cross"></span>
-            <span className="visually-hidden">Close</span>
-        </button> */}
         <span onClick={onClose} className="cross-stand-alone"></span>
 
         <div className="profile-img-div">
