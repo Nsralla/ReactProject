@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { addDoc, collection, deleteDoc, getDoc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc,doc, getDoc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
 import { setCars, setRentedCars } from "../Store/index";
 const firebaseConfig = {
     apiKey: "AIzaSyDwoz06Zni2VzDSqJ3OIW0j0LNvZopXmA4",
@@ -47,7 +47,7 @@ export const addCarToFirebase = (car) => async(dispatch)=>{
 
 
 //get rented cars
-export const getRentedCars = ()=>async(dispatch)=>{
+export const getRentedCars = ()=>async (dispatch)=>{
     try{
         const docRef = await getDocs(collection(db,"rentedCars"));
         let rentedCars= docRef.docs.map(doc=>({
@@ -71,6 +71,17 @@ export const addRentedCarToFireBase = (car)=>async(dispatch)=>{
         console.error("error adding rented car", error);
     }
 }
+
+// Assuming deleteDoc and doc are imported from 'firebase/firestore'
+export const deleteCarFromFirestore = (id) => async (dispatch) => {
+    try {
+        if (!id) throw new Error("Document ID is undefined.");
+        await deleteDoc(doc(db, "cars", id));
+    } catch (error) {
+        console.error("error deleting from Firestore", error);
+        throw new Error("Failed to delete from Firestore");  // To handle this in component
+    }
+};
 
 //  useEffect(()=>{
 //     async function uploadCarsToFirestore(){

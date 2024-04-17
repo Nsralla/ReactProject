@@ -5,6 +5,7 @@ import { collection, getDoc } from 'firebase/firestore';
 import { app } from '../db/firebase';
 import { useEffect } from 'react';
 import { fetchCars } from '../db/firebase';
+import {motion} from 'framer-motion';
 // Helper function to truncate text
 function truncateText(text, maxLength) {
     return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
@@ -24,6 +25,26 @@ export default function CarsList() {
     },[dispatch]);
 
     const cars = useSelector((state) => state.cars);
+
+
+     // Animation variants for Framer Motion
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,  // Delay between each child's animation
+            },
+        },
+    };
+
+    const itemVariants = {
+        hidden: { x: -100, opacity: 0 },
+        visible: { x: 0, opacity: 1 },
+        hover:{
+            scale:1.1
+        }
+    };
 
 
     

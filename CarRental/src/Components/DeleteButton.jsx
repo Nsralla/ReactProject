@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-// import "./cardetails.scss";
 import { useDispatch } from "react-redux";
 import { removeCar } from "../Store";
-import { useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
+import { deleteCarFromFirestore } from "../db/firebase";
 // import "./deletebutton.scss";
 
-export default function DeleteButton({ carName }) {
+export default function DeleteButton({ carName, id }) {
     const dispatch = useDispatch();
     const navigate = useNavigate(); // get the useNavigate hook
     const dialogRef = useRef(null); // Moved up for better structure
@@ -14,11 +14,20 @@ export default function DeleteButton({ carName }) {
         dialogRef.current.showModal(); // Directly show the dialog
     };
 
-    function confirmDelete() {
+    
+    const confirmDelete = useCallback( () => {
+    try {
+        
+        dispatch(deleteCarFromFirestore(id));
+        navigate("/allcars");
         dispatch(removeCar(carName));
-        dialogRef.current.close(); // Close the dialog
-        navigate("/allcars"); // navigate to the all cars page after deletion
+        dialogRef.current.close();
+    } catch (error) {
+        console.error("Failed to delete car:", error);
     }
+}, [carName, id, dispatch, navigate]);
+
+    
 
     function handleCancel() {
         dialogRef.current.close(); // Close the dialog
