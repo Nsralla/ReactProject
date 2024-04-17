@@ -54,8 +54,8 @@ function handleRent(){
                     <input ref={totalRef} readOnly type="text" id="total-cost" name="total_cost" placeholder="$150" />
                 </div>
                 <div style={{display:'flex', gap:'10px', justifyContent:'center'}} className="form-actions">
-                <button onClick={handleRent}  type="submit" id="rent">Rent</button>
-                <button onClick={closeDialog}> Close</button>
+                <button style={{borderRadius:"4px"}} onClick={handleRent}  type="submit" id="rent">Rent</button>
+                <button style={{borderRadius:"4px"}} onClick={closeDialog}> Close</button>
                 </div>
             </form>   
 </div>

@@ -54,8 +54,8 @@ export default function NewCar({ closeDialog }) {
                         <textarea ref={detailsRef} id="details" rows="5"></textarea>
                     </div>
                     <div className="form-actions">
-                        <button type="button" onClick={closeDialog}>Cancel</button>
-                        <button type="submit">Add</button>
+                        <button className="button-27" type="button" onClick={closeDialog}>Cancel</button>
+                        <button className="button-27" type="submit">Add</button>
                     </div>
                 </form>
             </div>

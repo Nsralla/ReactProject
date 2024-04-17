@@ -1,5 +1,5 @@
 // Importing necessary libraries and components
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ImageCarousel from './ImageCarousel.jsx';
@@ -12,13 +12,8 @@ import { editCar } from '../Store/index.js';
 export default function CarDetails() {
     const { carName } = useParams();
     const cars = useSelector(state => state.cars);
-    console.log(cars);
     const car = cars.find(car => car.name === carName);
     const dispatch = useDispatch();
-    console.log(car);
-    
-
-    // State and refs for handling the dialog
     const [isOpen, setIsOpen] = useState(false);
     const [editId, setEditId] = useState(null);
     const [carDetails, setCarDetails] = useState(car.details);
@@ -42,10 +37,12 @@ const handleDetailsChange = (event) => {
 };
 
 // Dispatch changes when the user decides to save or submit the changes
-const saveCarDetails = () => {
-    dispatch(editCar({ ...car, details: carDetails }));
-    setEditId(null); // Optionally reset the edit mode
-};
+
+    const saveCarDetails = () => {
+        dispatch(editCar({ ...car, details: carDetails }));
+        setEditId(null); // Optionally reset the edit mode
+    };
+
 
     // Toggle editId between 0 and 1
     const handleIdChange = () => {
@@ -64,8 +61,8 @@ function handleSubmitNewPrice(){
 
     return (
         <div className="car-detail-div">
-            <div className="header">
-                <h2>{carName}</h2>
+            <div className="header2">
+                <h2 style={{color:"#f57c51"}}>{carName}</h2>
                 <div className="buttons">
                     <DeleteButton  carName={carName} />
                     <button onClick={handleIdChange}>Edit</button>
@@ -73,7 +70,7 @@ function handleSubmitNewPrice(){
                 </div>
             </div>
 
-            <dialog style={{ backgroundColor: '#f39f5a' }} ref={dialogRef}>
+            <dialog style={{ backgroundColor: '#f39f5a', borderRadius:'12px' }} ref={dialogRef}>
                 <CarRent closeDialog={closeDialog} price={car.price} carName={carName} />
             </dialog>
 
@@ -97,7 +94,7 @@ function handleSubmitNewPrice(){
                         onBlur={saveCarDetails} // or use a save button click event
                     />
                 ) : (
-                    <div>{car.details}</div>
+                    <div style={{lineHeight:'1.5',textShadow: '2px 2px 2px #000'}}>{car.details}</div>
                 )}
             </section>
         </div>

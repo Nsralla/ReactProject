@@ -5,7 +5,11 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #021024;
+  ord-wrap: break-word;    /* Allows long words to be able to be broken and wrap onto the next line */
+  overflow-wrap: break-word; /* Specifies whether or not the browser may break lines within words */
+  text-size-adjust: 100%;  
+  font-display: swap; 
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

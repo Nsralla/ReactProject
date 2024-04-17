@@ -1,73 +1,81 @@
-.car-detail-div{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.car-detail-div {
+    background-color: #000;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 20px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.5;
 
-    
-.header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 6px;
-    box-sizing: border-box;
-
-    .buttons{
+    .header2 {
         display: flex;
-        gap: 12px;
-        // justify-content: space-around;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
 
-        button, Link,a{
-            padding: 8px 10px;
-            background-color: transparent;
-            font-weight: bold;
-            font-size: 18px;
-            color: white;
-            text-decoration: none;
-            
+        h2 {
+            font-size: 24px;
+            color: #222;
         }
-    }
-}
 
+        .buttons {
+            button {
+                background-color: #f39f5a;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+                font-weight: bold;
+                color: white;
+                cursor: pointer;
+                margin-left: 10px;
+                transition: background-color 0.3s;
 
-h1{
-    text-align: left;
-    padding: 10px;
-    margin: 0;
-}
-.body{
-    width: 70%;
-    text-align: left;
-    padding: 10px;
-}
-}
- textarea {
-        width: 100%; // Ensures full width in container
-        padding: 0.8em; // Comfortable padding around the text
-        margin-top: 10px; // Spacing from the previous elements
-        border: 2px solid #ccc; // Subtle border styling
-        border-radius: 4px; // Rounded corners
-
-        &:focus {
-            border-color: #5057c9; // Highlight color when focused
-            outline: none; // Removes the default focus outline
-            box-shadow: 0 0 8px rgba(80, 87, 201, 0.5); // Subtle glow effect
+                &:hover {
+                    background-color: darken(#f39f5a, 10%);
+                }
+            }
         }
     }
 
-    input{
-         padding: 0.8em; // Comfortable padding around the text
-        margin-top: 10px; // Spacing from the previous elements
-        border: 2px solid #ccc; // Subtle border styling
-        border-radius: 4px; // Rounded corners
+    dialog {
+        border: none;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        padding: 20px;
+        border-radius: 12px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 30%; // Adjust based on your layout
+        height: auto;
+        overflow: hidden;
+        z-index: 1050;
 
-        &:focus {
-            border-color: #5057c9; // Highlight color when focused
-            outline: none; // Removes the default focus outline
-            box-shadow: 0 0 8px rgba(80, 87, 201, 0.5); // Subtle glow effect
+        &::backdrop {
+            background-color: rgba(0,0,0,0.5);
         }
     }
 
-    textarea {
-        height: 150px; // Fixed height for text area
-        resize: none; // Disables resizing the text area
+    .body {
+        margin-top: 20px;
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+
+            &:focus {
+                border-color: #f39f5a;
+            }
+        }
     }
+
+    ImageCarousel {
+        margin-top: 20px;
+    }
+}
+
