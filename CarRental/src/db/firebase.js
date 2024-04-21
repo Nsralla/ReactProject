@@ -25,10 +25,12 @@ export {app, db, analytics};
 // fetch the cars from the fire store
 export const fetchCars = () => async (dispatch) =>{
     try{
+        console.log("fetching cars from firebase...");
         const query = await getDocs(collection(db,"cars"));
         const cars = query.docs.map(doc => ({
             id:doc.id, ...doc.data()
         }));
+        console.log("cars in redux", cars);
         dispatch(setCars(cars))
     }catch(error){
         console.error("Error fetching cars from firestore", error);

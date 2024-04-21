@@ -17,12 +17,24 @@ const initialState = cars;
         removeCar: (state, action) => {
         return state.filter((car) => car.name !== action.payload);
         },
-        editCar: (state, action) => {
-        const editedCar = action.payload;
-        const carIndex = state.findIndex((car) => car.name === editedCar.name);
-        if (carIndex !== -1) {
-            state[carIndex] = { ...state[carIndex], ...action.payload };
-        }
+        editCarPrice: (state, action) => {
+        const {id, price} = action.payload;
+        console.log("redux, id = ",id);
+        console.log("redux, price= ",price);
+        return state.map((car)=>{
+            if(car.id === id){
+                return {...car, price};
+            }
+            return car;
+        });
+        
+        },
+        editCarDetails: (state, action) => {
+        const {id, details} = action.payload;
+        console.log(id);
+        console.log(details);
+
+        
         },
     },
     });
@@ -50,7 +62,7 @@ const initialState = cars;
 
 
     export const {setRentedCars, addRentedCar, returnCar, listRentedCars} = rentedCarsSlice.actions;
-    export const { setCars, addCar, removeCar, editCar } = carsSlice.actions;
+    export const { setCars, addCar, removeCar, editCarPrice, editCarDetails } = carsSlice.actions;
 
     const store = configureStore({
     reducer: {

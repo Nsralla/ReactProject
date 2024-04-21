@@ -1,8 +1,6 @@
 import './carslist.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { collection, getDoc } from 'firebase/firestore';
-import { app } from '../db/firebase';
 import { useEffect } from 'react';
 import { fetchCars } from '../db/firebase';
 import {motion} from 'framer-motion';
@@ -19,7 +17,7 @@ export default function CarsList() {
     // then get the cars from redux
     useEffect(()=>{
         const handleFetchingCars = async()=>{
-            await dispatch(fetchCars());
+            dispatch(fetchCars());
         }
         handleFetchingCars();
     },[dispatch]);

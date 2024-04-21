@@ -7,22 +7,33 @@ import RentButton from './Button.jsx';
 import DeleteButton from './DeleteButton.jsx';
 import CarRent from '../designs/carRent.jsx';
 import './cardetails.scss';
-import { editCar } from '../Store/index.js';
+import { editCarPrice } from '../Store/index.js';
+import { editCarDetails} from '../Store/index.js';
 import { motion } from 'framer-motion';
 import { EditCarPriceFromFirebase, editCarDetailsFirebase } from '../db/firebase.js';
+import { fetchCars } from '../db/firebase.js';
 
 export default function CarDetails() {
     const { carName } = useParams();
-    const cars = useSelector(state => state.cars);
-    const car = cars.find(car => car.name === carName);
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
     const [editId, setEditId] = useState(null);
-    const [carDetails, setCarDetails] = useState(car.details);
-    const [carPrice, setCarPrice] = useState(car.price);
     const dialogRef = useRef(null);
 
-    
+    useEffect(() => {
+            const handleFetchingCars = async () => {
+            dispatch(fetchCars());
+            };
+            handleFetchingCars();
+    }, [dispatch]);
+
+    const cars = useSelector(state => state.cars);
+    const car = cars.find(car => car.name === carName);
+    console.log(cars);
+
+     const [carDetails, setCarDetails] = useState(car.details);
+     const [carPrice, setCarPrice] = useState(car.price);
+
 
     const openDialog = useCallback(() => {
         setIsOpen(true);
@@ -49,13 +60,14 @@ export default function CarDetails() {
 
 const saveCarDetails = useCallback(() => {
         console.log(car.id);
-        dispatch(editCar({ ...car, details: carDetails }));
+        dispatch(editCarDetails({ id: car.id, details: carDetails }));
         dispatch(editCarDetailsFirebase(car.id, carDetails));
         setEditId(null);
     }, [dispatch, car, carDetails]);
 
 const handleSubmitNewPrice = useCallback( async() => {
-        dispatch(editCar({ ...car, price: carPrice }));
+    
+        dispatch(editCarPrice({ id: car.id, price: carPrice }));
         dispatch(EditCarPriceFromFirebase(car.id, carPrice));
         setEditId(null);
     }, [car, dispatch, carPrice]);
