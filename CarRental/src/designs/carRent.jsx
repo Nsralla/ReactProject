@@ -20,7 +20,9 @@ export default function CarRent({closeDialog, price, carName}){
     handleUploadRentedCars();
     }, [dispatch]);
     // get the rented cars from redux
-    const rentedCars = useSelector((state) => state.rentedCars);
+    let rentedCars = useSelector((state) => state.rentedCars);
+    // sort retned cars
+    rentedCars = [...rentedCars].sort((a,b)=>a.id - b.id );
     console.log("rented cars= ",rentedCars);
     const handleSubmit = useCallback((event)=>{
         event.preventDefault();
