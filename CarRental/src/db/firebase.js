@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { addDoc, collection, deleteDoc,doc, getDoc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
-import { setCars, setRentedCars } from "../Store/index";
+import { addRentedCar, setCars, setRentedCars } from "../Store/index";
 const firebaseConfig = {
     apiKey: "AIzaSyDwoz06Zni2VzDSqJ3OIW0j0LNvZopXmA4",
     authDomain: "carrental-10bea.firebaseapp.com",
@@ -68,7 +68,7 @@ export const addRentedCarToFireBase = (car)=>async(dispatch)=>{
         const docRef = await addDoc(collection(db,"rentedCars"),car);
         console.log("Document written with ID:", docRef.id);
         // update rented cars list in redux
-        dispatch((car));
+        dispatch(addRentedCar(car));
     }catch(error){
         console.error("error adding rented car", error);
     }

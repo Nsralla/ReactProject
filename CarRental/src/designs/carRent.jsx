@@ -1,17 +1,27 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './carRent.scss';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState, useEffect } from 'react';
 import { addRentedCarToFireBase } from '../db/firebase';
+import { getRentedCars } from '../db/firebase';
 export default function CarRent({closeDialog, price, carName}){
 
-    const rentedCars = useSelector((state)=>state.rentedCars)
+    // const rentedCars = useSelector((state)=>state.rentedCars);
+    // console.log(rentedCars);
     const dispatch = useDispatch();
     const startRef = useRef(null);
     const endRef = useRef(null);
     const totalRef = useRef(null);
-
     
-
+    // upload rented cars from firebase, then send to redux
+    useEffect(() => {
+    async function handleUploadRentedCars() {
+        dispatch(getRentedCars());
+    }
+    handleUploadRentedCars();
+    }, [dispatch]);
+    // get the rented cars from redux
+    const rentedCars = useSelector((state) => state.rentedCars);
+    console.log("rented cars= ",rentedCars);
     const handleSubmit = useCallback((event)=>{
         event.preventDefault();
     },[]);
@@ -19,7 +29,8 @@ export default function CarRent({closeDialog, price, carName}){
 
 const  handleRent = useCallback(()=>{
         const lastCar = rentedCars.length > 0 ? rentedCars[rentedCars.length - 1] : null;
-        let nextId = lastCar ? lastCar.id + 1 : 0;
+        console.log("last car= ", lastCar);
+        let nextId = lastCar ? (Number(lastCar.id) + 1) : 0;
         const startDate = new Date(startRef.current.value);
         const endDate = new Date(endRef.current.value);
         const timeDiff = endDate - startDate;

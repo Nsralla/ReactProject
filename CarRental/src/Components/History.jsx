@@ -7,7 +7,7 @@ export function History() {
     // upload rented cars from firebase, then send to redux
     useEffect(()=>{
         async function handleUploadRentedCars(){
-        await dispatch(getRentedCars());
+        dispatch(getRentedCars());
     } 
         handleUploadRentedCars();
     },[dispatch]);
@@ -27,17 +27,17 @@ export function History() {
                 </tr>
             </thead>
             <tbody>
-                {rentedCars.map((car)=>{
-                    return(<tr key={car.car}>
-                    <td key={car.id} style={{ padding: '8px' }}>{car.id}</td>
-                    <td key={car.car} style={{ padding: '8px' }}>{car.car}</td>
-                    <td key={car.from} style={{ padding: '8px' }}>{car.from}</td>
-                    <td key={car.to} style={{ padding: '8px' }}>{car.to}</td>
-                    <td key={car.totalCost} style={{ padding: '8px' }}>{car.totalCost}</td>
-                </tr>);
-                })}
-                
-            </tbody>
+    {rentedCars.map((car) => (
+        <tr key={car.fireId}>  {/* Unique key for each row */}
+            <td style={{ padding: '8px' }}>{car.id}</td>
+            <td style={{ padding: '8px' }}>{car.car}</td>
+            <td style={{ padding: '8px' }}>{car.from}</td>
+            <td style={{ padding: '8px' }}>{car.to}</td>
+            <td style={{ padding: '8px' }}>{car.totalCost}</td>
+        </tr>
+    ))}
+</tbody>
+
         </table>
     );
 }

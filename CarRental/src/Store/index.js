@@ -48,6 +48,7 @@ const initialState = cars;
                 return [...action.payload];
             },
             addRentedCar:(state, action)=>{
+                console.log("action.payload = ",action.payload);
                 state.push(action.payload);
             },
             returnCar: (state, action) => {
