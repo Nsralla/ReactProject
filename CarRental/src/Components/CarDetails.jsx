@@ -9,7 +9,7 @@ import CarRent from '../designs/carRent.jsx';
 import './cardetails.scss';
 import { editCar } from '../Store/index.js';
 import { motion } from 'framer-motion';
-import { EditCarPriceFromFirebase } from '../db/firebase.js';
+import { EditCarPriceFromFirebase, editCarDetailsFirebase } from '../db/firebase.js';
 
 export default function CarDetails() {
     const { carName } = useParams();
@@ -48,7 +48,9 @@ export default function CarDetails() {
     }, []);
 
 const saveCarDetails = useCallback(() => {
+        console.log(car.id);
         dispatch(editCar({ ...car, details: carDetails }));
+        dispatch(editCarDetailsFirebase(car.id, carDetails));
         setEditId(null);
     }, [dispatch, car, carDetails]);
 
