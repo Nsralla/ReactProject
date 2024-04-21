@@ -9,6 +9,7 @@ import CarRent from '../designs/carRent.jsx';
 import './cardetails.scss';
 import { editCar } from '../Store/index.js';
 import { motion } from 'framer-motion';
+import { EditCarPriceFromFirebase } from '../db/firebase.js';
 
 export default function CarDetails() {
     const { carName } = useParams();
@@ -37,11 +38,7 @@ export default function CarDetails() {
         setCarDetails(event.target.value);
     }, []);
 
-    const saveCarDetails = useCallback(() => {
-        dispatch(editCar({ ...car, details: carDetails }));
-        setEditId(null);
-    }, [dispatch, car, carDetails]);
-
+    
     const handleIdChange = useCallback(() => {
         setEditId(prevId => (prevId === 1 ? 0 : 1));
     }, []);
@@ -50,8 +47,14 @@ export default function CarDetails() {
         setCarPrice(event.target.value);
     }, []);
 
-    const handleSubmitNewPrice = useCallback(() => {
+const saveCarDetails = useCallback(() => {
+        dispatch(editCar({ ...car, details: carDetails }));
+        setEditId(null);
+    }, [dispatch, car, carDetails]);
+
+const handleSubmitNewPrice = useCallback( async() => {
         dispatch(editCar({ ...car, price: carPrice }));
+        dispatch(EditCarPriceFromFirebase(car.id, carPrice));
         setEditId(null);
     }, [car, dispatch, carPrice]);
 

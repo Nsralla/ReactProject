@@ -83,6 +83,17 @@ export const deleteCarFromFirestore = (id) => async (dispatch) => {
     }
 };
 
+export const EditCarPriceFromFirebase = (id, price) => async (dispatch) => {
+    try {
+        if (!id) throw new Error("ID IS NOT DEFINED");
+        const docRef = doc(db, "cars", id);
+        await updateDoc(docRef, { price });
+        console.log("Document updated");
+    } catch (error) {
+        console.error("Error editing car's details", error);
+    }
+};
+
 //  useEffect(()=>{
 //     async function uploadCarsToFirestore(){
 //     // get the collection
