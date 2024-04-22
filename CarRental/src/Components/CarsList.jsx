@@ -18,7 +18,7 @@ export default function CarsList() {
     useEffect(()=>{
         setIsLoading(true);
         const handleFetchingCars = async()=>{
-            await new Promise((resolve) => setTimeout(resolve,2000));
+            await new Promise((resolve) => setTimeout(resolve,1000));
             // console.log("stop loading");
             await dispatch(fetchCars());
             setIsLoading(false);

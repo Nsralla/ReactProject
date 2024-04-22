@@ -49,9 +49,6 @@ const initialState =[];
                 console.log("action.payload = ",action.payload);
                 state.push(action.payload);
             },
-            returnCar: (state, action) => {
-            return state.filter((car) => car.name !== action.payload);
-            },
             listRentedCars: (state) => {
             return state;
             }

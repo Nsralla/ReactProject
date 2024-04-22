@@ -31,12 +31,9 @@ export default function CarRent({closeDialog, price, carName}){
 
 
 const  handleRent = useCallback(async()=>{
-        console.log("Before loading set to true");
         setIsLoading(true);
-        console.log("After loading set to true");
 
         const lastCar = rentedCars.length > 0 ? rentedCars[rentedCars.length - 1] : null;
-        console.log("last car= ", lastCar);
         let nextId = lastCar ? (Number(lastCar.id) + 1) : 0;
         const startDate = new Date(startRef.current.value);
         const endDate = new Date(endRef.current.value);
@@ -54,13 +51,10 @@ const  handleRent = useCallback(async()=>{
             // await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate delay
             await dispatch(addRentedCarToFireBase(rentCarDetails));
 
-            // await dispatch(addRentedCarToFireBase(rentCarDetails));
         }catch(error){
             console.error("Failed to rent a car", error);
         }finally{
-            console.log("Before loading set to false");
             setIsLoading(false);
-            console.log("After loading set to false");
         }
         totalRef.current.value = `$${rentCarDetails.totalCost.toFixed(2)}`; 
         

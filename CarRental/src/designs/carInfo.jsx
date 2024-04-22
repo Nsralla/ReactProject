@@ -6,12 +6,14 @@ import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "fire
 import "./carinfo.scss";
 
 export default function NewCar({ closeDialog }) {
+
     const dispatch = useDispatch();
     const nameRef = useRef();
     const priceRef = useRef();
     const detailsRef = useRef();
     const fileInputRef = useRef();
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const handleImageUpload = async (file) => {
         const storage = getStorage();
@@ -41,10 +43,10 @@ export default function NewCar({ closeDialog }) {
                 image: imageUrl,
                 sideViewImages: [],
             };
-
             await dispatch(addCarToFirebase(newCar));
             closeDialog();
         } catch (error) {
+            setError(error);
             console.error("Error calling function to add car to DB", error);
             alert("Failed to add new car. Please try again.");
         } finally {
@@ -77,6 +79,7 @@ export default function NewCar({ closeDialog }) {
                     <button className="button-27" type="submit" disabled={isLoading}>Add</button>
                 </div>
                 {isLoading && <h3>Adding {nameRef.current?.value}...</h3>}
+                {error && <h2>Error adding a new car {error}</h2>}
             </form>
         </div>
     );

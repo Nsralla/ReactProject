@@ -9,7 +9,6 @@ export default function MainPage() {
         <div className="app">
         <Header />
         <div className="content">
-            {/* <Sidebar /> */}
             <section>
             <Outlet/>
             </section>

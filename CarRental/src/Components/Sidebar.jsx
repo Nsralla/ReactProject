@@ -31,7 +31,6 @@ export default function Sidebar({isOpen, onClose}) {
         <span onClick={onClose} className="cross-stand-alone"></span>
 
         <div className="profile-img-div">
-          {/* <img src={profile} alt="profile picture" /> */}
         </div>
         <div className="links-div">
           <button
