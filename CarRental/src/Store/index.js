@@ -2,7 +2,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 import {thunk} from "redux-thunk"; /// Corre[[ct import of redux-thunk
 import { cars } from "../Constants/cars.js";
 // Define the initial state of the cars
-const initialState = cars;
+const initialState =[];
 
     const carsSlice = createSlice({
     name: "cars",
@@ -19,8 +19,6 @@ const initialState = cars;
         },
         editCarPrice: (state, action) => {
         const {id, price} = action.payload;
-        console.log("redux, id = ",id);
-        console.log("redux, price= ",price);
         return state.map((car)=>{
             if(car.id === id){
                 return {...car, price};

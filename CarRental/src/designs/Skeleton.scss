@@ -1,0 +1,50 @@
+// Define base colors and shimmer animation as variables for easy maintenance
+$loading-bg: #ccc;
+$shimmer-colors: linear-gradient(to right, #eee 8%, #ddd 18%, #eee 33%);
+$shimmer-animation: shimmer 2s infinite linear;
+
+.skeletons{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:10px;
+}
+.skeleton-wrapper {
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .skeleton-image {
+    height: 200px;
+    background-color: $loading-bg;
+    width: 100%;
+    border-radius: 4px;
+    background-image: $shimmer-colors;
+    background-size: 800px 104px;
+    animation: $shimmer-animation;
+  }
+
+  .skeleton-text {
+    height: 20px;
+    background-color: $loading-bg;
+    border-radius: 4px;
+    background-image: $shimmer-colors;
+    background-size: 800px 104px;
+    animation: $shimmer-animation;
+
+    &.small {
+      width: 80%;
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}

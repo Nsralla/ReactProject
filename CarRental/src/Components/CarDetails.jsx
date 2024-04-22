@@ -31,8 +31,8 @@ export default function CarDetails() {
     const car = cars.find(car => car.name === carName);
     console.log(cars);
 
-     const [carDetails, setCarDetails] = useState(car.details);
-     const [carPrice, setCarPrice] = useState(car.price);
+    const [carDetails, setCarDetails] = useState(car.details);
+    const [carPrice, setCarPrice] = useState(car.price);
 
 
     const openDialog = useCallback(() => {
@@ -88,7 +88,8 @@ const handleSubmitNewPrice = useCallback( async() => {
             </dialog>
 
             <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
-                <ImageCarousel images={car.sideViewImages} />
+                {car.sideViewImages.length !== 0 &&
+                    <ImageCarousel images={car.sideViewImages} />}
                 {car.sideViewImages.length === 0 && <div style={{ width: '100%', borderRadius: "10px", backgroundColor: '#f57c51', marginBottom: '35px' }}>
                     <h2>Other images are unavailable for this car</h2>
                 </div>}

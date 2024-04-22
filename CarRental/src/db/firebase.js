@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { addDoc, collection, deleteDoc,doc, getDoc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
-import { addRentedCar, setCars, setRentedCars } from "../Store/index";
+import { addCar, addRentedCar, setCars, setRentedCars } from "../Store/index";
 const firebaseConfig = {
     apiKey: "AIzaSyDwoz06Zni2VzDSqJ3OIW0j0LNvZopXmA4",
     authDomain: "carrental-10bea.firebaseapp.com",
@@ -41,6 +41,7 @@ export const addCarToFirebase = (car) => async(dispatch)=>{
     try{
         const docRef = await addDoc(collection(db,"cars"),car);
         console.log("Document written with ID:",docRef.id);
+        dispatch(addCar(car));
 
     }catch(error){
         console.error("Error adding car to firebase", error);

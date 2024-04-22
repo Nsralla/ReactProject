@@ -1,73 +1,83 @@
-import "./carinfo.scss";
-import { useDispatch, useSelector } from 'react-redux';
-import { addCar } from "../Store/index.js";
-import { useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
+import { useDispatch } from 'react-redux';
 import { addCarToFirebase } from "../db/firebase.js";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
+
+import "./carinfo.scss";
 
 export default function NewCar({ closeDialog }) {
     const dispatch = useDispatch();
     const nameRef = useRef();
     const priceRef = useRef();
     const detailsRef = useRef();
-    const [image, setImage] = useState(null);  // Use state to handle image as a Blob URL
+    const fileInputRef = useRef();
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleImageChange = useCallback((event) => {
-        if (event.target.files[0]) {
-            setImage(URL.createObjectURL(event.target.files[0]));  // Create and set Blob URL
-        }
-    },[]);
+    const handleImageUpload = async (file) => {
+        const storage = getStorage();
+        const ref = storageRef(storage, `carImages/${file.name}`);
+        await uploadBytes(ref, file);
+        return getDownloadURL(ref);
+    };
 
-    // instead of adding to redux, add it to data base
     const handleSubmit = useCallback(async (event) => {
         event.preventDefault();
+        setIsLoading(true);
 
-        const newCar = {
-            name: nameRef.current.value,
-            model: '2022',
-            price: priceRef.current.value,
-            details: detailsRef.current.value,
-            image: image,  // Use Blob URL,
-            sideViewImages:[],
-        };
-        console.log(newCar.image);
-
-        try{
-            await dispatch(addCarToFirebase(newCar));
-        }catch(error){
-            console.error("error calling function to add car to db", error);
+        const file = fileInputRef.current.files[0];
+        if (!file) {
+            alert("Please select an image to upload.");
+            setIsLoading(false);
+            return;
         }
-        dispatch(addCar(newCar));
-        closeDialog();
-    },[dispatch,closeDialog, image]);
-    
+
+        try {
+            const imageUrl = await handleImageUpload(file);
+            const newCar = {
+                name: nameRef.current.value,
+                model: '2022',
+                price: Number(priceRef.current.value),
+                details: detailsRef.current.value,
+                image: imageUrl,
+                sideViewImages: [],
+            };
+
+            await dispatch(addCarToFirebase(newCar));
+            closeDialog();
+        } catch (error) {
+            console.error("Error calling function to add car to DB", error);
+            alert("Failed to add new car. Please try again.");
+        } finally {
+            setIsLoading(false);
+        }
+    }, [dispatch, closeDialog]);
 
     return (
-        <>
-            <div className="add-car-container">
-                <h2>Add New Car</h2>
-                <form onSubmit={handleSubmit} id="add-car-form">
-                    <div className="form-group">
-                        <label htmlFor="car-name">Name</label>
-                        <input ref={nameRef} type="text" id="car-name" required />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="cost-per-day">Cost Per Day</label>
-                        <input ref={priceRef} type="text" id="cost-per-day" required />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="upload-image">Upload Image</label>
-                        <input type="file" onChange={handleImageChange} accept="image/*" />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="details">Details</label>
-                        <textarea ref={detailsRef} id="details" rows="5"></textarea>
-                    </div>
-                    <div className="form-actions">
-                        <button className="button-27" type="button" onClick={closeDialog}>Cancel</button>
-                        <button className="button-27" type="submit">Add</button>
-                    </div>
-                </form>
-            </div>
-        </>
+        <div className="add-car-container">
+            <h2>Add New Car</h2>
+            <form onSubmit={handleSubmit} id="add-car-form">
+                <div className="form-group">
+                    <label htmlFor="car-name">Name</label>
+                    <input ref={nameRef} type="text" id="car-name" required />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="cost-per-day">Cost Per Day</label>
+                    <input ref={priceRef} type="text" id="cost-per-day" required />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="upload-image">Upload Image</label>
+                    <input ref={fileInputRef} type="file" id="upload-image" accept="image/*" onChange={() => {}} required />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="details">Details</label>
+                    <textarea ref={detailsRef} id="details" rows="5"></textarea>
+                </div>
+                <div className="form-actions">
+                    <button className="button-27" type="button" onClick={closeDialog}>Cancel</button>
+                    <button className="button-27" type="submit" disabled={isLoading}>Add</button>
+                </div>
+                {isLoading && <h3>Adding {nameRef.current?.value}...</h3>}
+            </form>
+        </div>
     );
 }
