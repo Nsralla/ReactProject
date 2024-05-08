@@ -79,7 +79,7 @@ const  handleRent = useCallback(async()=>{
                 </div>
                 <div style={{display:'flex', gap:'10px', justifyContent:'center'}} className="form-actions">
                 <button style={{borderRadius:"4px"}} onClick={handleRent}  type='button' id="rent">Rent</button>
-                <button style={{borderRadius:"4px"}} onClick={closeDialog}> Close</button>
+                <button style={{borderRadius:"4px"}} onClick={closeDialog} id="cancel_b"> Close</button>
                 </div>
                 {isLoading && <h2>Renting {carName}...</h2>}
             </form>   
